@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
-const knex = require('knex');
+//const knex = require('knex');
 const csv = require('csv-parser')
 const fs = require('fs')
 
@@ -12,15 +12,15 @@ const bcrypt = require('bcrypt-nodejs');
 app.use(bodyParser.json());
 app.use(cors());
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : '8553118283',
-    database : 'smart-brain'
-  }
-});
+// const db = knex({
+//   client: 'pg',
+//   connection: {
+//     host : '127.0.0.1',
+//     user : 'postgres',
+//     password : '8553118283',
+//     database : 'smart-brain'
+//   }
+// });
 
 /*app.get('/',(req,res) =>{
 	db.select('*').from('login')
@@ -29,26 +29,26 @@ const db = knex({
 	})
 })*/
 
-app.post('/signin',(req, res)=>{
+// app.post('/signin',(req, res)=>{
 
-	const {email, password} = req.body;
-	db.select('email','hash').from('login')
-	.where('email','=', email)
-		.then(data =>{
-			const isValid = bcrypt.compareSync(password,data[0].hash);
-			if(isValid){
-				return db.select('*').from('users')
-					.where('email', '=', email)
-					.then(user =>{
-						res.json(user[0])
-					})
-					.catch(err => res.status(400).json("Unable to get user"))
-				} else {
-					 res.status(400).json("Wrong Credentials");
-				}
-		})
-		.catch(err => res.status(400).json(err));
-})
+// 	const {email, password} = req.body;
+// 	db.select('email','hash').from('login')
+// 	.where('email','=', email)
+// 		.then(data =>{
+// 			const isValid = bcrypt.compareSync(password,data[0].hash);
+// 			if(isValid){
+// 				return db.select('*').from('users')
+// 					.where('email', '=', email)
+// 					.then(user =>{
+// 						res.json(user[0])
+// 					})
+// 					.catch(err => res.status(400).json("Unable to get user"))
+// 				} else {
+// 					 res.status(400).json("Wrong Credentials");
+// 				}
+// 		})
+// 		.catch(err => res.status(400).json(err));
+// })
 
 
 
