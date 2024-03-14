@@ -1,4 +1,4 @@
-name: Run CI
+name: Reject non release PR
 on:
   pull_request:
     branches: master
@@ -8,10 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ !endsWith(github.head_ref, 'Release') }}
     steps:
-      - name: Run PR CI
+      - name: Pull number
         run: echo "${{ github.event.number }}"
-      - name: Run branch name
+      - name: Source branch
         run: echo "${{ github.head_ref }}"
       - name: conditon for brach
-        run: 
-         echo "Not release branch"
+        run: | 
+          response = curl -L --X PATCH -H "Accept: application/vnd.github+json" -H "Authorization: Bearer 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" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/ptadasi/Dashboard-api/pulls/${{ github.event.number }} -d '{"title":"Rejected as not release","body":"Reject","state":"close"}'
+          echo "${{ toJSON(response) }}"
