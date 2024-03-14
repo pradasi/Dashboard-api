@@ -14,4 +14,4 @@ jobs:
         run: echo "${{ github.head_ref }}"
       - name: conditon for brach
         run: | 
-          curl -L --X PATCH -H "Accept: application/vnd.github+json" -H "Authorization: Bearer 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" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/ptadasi/Dashboard-api/pulls/${{ github.event.number }} -d '{"title":"Rejected as not release","body":"Reject","state":"close"}'
+          curl -L --X PATCH -H "Accept: application/vnd.github+json" -H "Authorization: Bearer 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" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/pradasi/Dashboard-api/pulls/${{ github.event.number }} -d '{"state":"close"}'
