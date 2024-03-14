@@ -4,11 +4,14 @@ on:
     branches: master
 
 jobs:
-  pull_request_ci:
+  CheckIfMatching:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
+    if: ${{ ![github.head_ref == *Release] }}
     steps:
       - name: Run PR CI
         run: echo "${{ github.event.number }}"
       - name: Run branch name
-        run: echo "${{ github.even.head.ref }}"
+        run: echo "${{ github.head_ref }}"
+      - name: conditon for brach
+        run: 
+         echo "Not release branch"
