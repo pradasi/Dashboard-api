@@ -6,7 +6,6 @@ on:
 jobs:
   CheckIfMatching:
     runs-on: ubuntu-latest
-    if: ${{ github.head_ref != *Release }}
     steps:
       - name: Run PR CI
         run: echo "${{ github.event.number }}"
