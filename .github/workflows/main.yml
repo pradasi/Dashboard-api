@@ -9,4 +9,6 @@ jobs:
     if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: Run PR CI
-        run: echo "Running PR only CI"
+        run: echo "${{ github.event.number }}"
+      - name: Run branch name
+        run: echo "${{ github.even.head.ref }}"
