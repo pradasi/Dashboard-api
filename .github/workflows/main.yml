@@ -14,4 +14,4 @@ jobs:
         run: echo "${{ github.head_ref }}"
       - name: conditon for brach
         run: | 
-          curl -L --X PATCH -H "Accept: application/vnd.github+json" -H "Authorization: Bearer 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" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/pradasi/Dashboard-api/pulls/${{ github.event.number }} -d '{"state":"close"}'
+          curl -L --X PATCH -H "Accept: application/vnd.github+json" -H "Authorization: Bearer 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" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/pradasi/Dashboard-api/pulls/${{ github.event.number }} -d '{"state":"close"}'
